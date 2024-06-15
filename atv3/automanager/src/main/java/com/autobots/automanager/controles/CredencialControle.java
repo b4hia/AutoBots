@@ -88,7 +88,7 @@ public class CredencialControle {
 		}
 	}
 	
-	@PostMapping("/cadastrar/{idUsuario}")
+	@PostMapping("/credencial/cadastro/{idUsuario}")
 	public ResponseEntity<?> cadastrarCredencial(@RequestBody CredencialUsuarioSenha dados, @PathVariable Long idUsuario){
 		Usuario usuario = repositorioUsuario.findById(idUsuario).orElse(null);
 		if(usuario == null) {
@@ -112,7 +112,7 @@ public class CredencialControle {
 		}
 	}
 	
-	@PutMapping("/atualizar/{idCredencial}")
+	@PutMapping("/credencial/atualizar/{idCredencial}")
 	public ResponseEntity<?> atualizarCredencial(@PathVariable Long idCredencial, @RequestBody CredencialUsuarioSenha dados){
 		CredencialUsuarioSenha credencial = repositorioCredencialUsuarioSenha.findById(idCredencial).orElse(null);
 		if(credencial == null) {
@@ -131,7 +131,7 @@ public class CredencialControle {
 		}
 	}
 	
-	@DeleteMapping("/deletar/{idCredencial}")
+	@DeleteMapping("/credencial/excluir/{idCredencial}")
 	public ResponseEntity<?> deletarCredencial(@PathVariable Long idCredencial){
 		CredencialUsuarioSenha verificacao = repositorioCredencialUsuarioSenha.findById(idCredencial).orElse(null);
 		if(verificacao == null) {
@@ -157,7 +157,7 @@ public class CredencialControle {
 	
 	//CREDENCIAL CODIGO DE BARRAS
 	
-	@GetMapping("/encontrar-codigo-barra")
+	@GetMapping("/codigosbarra")
 	public ResponseEntity<?> encontrarCredenciaisCodigoBarras(){
 		List<CredencialCodigoBarra> credenciais = repositorioCredencialCodigoBarra.findAll();
 		adicionarLinkCredencialCodigoDeBarra.adicionarLink(credenciais);
@@ -168,7 +168,7 @@ public class CredencialControle {
 		return new ResponseEntity<List<CredencialCodigoBarra>>(credenciais, HttpStatus.FOUND);
 	}
 
-	@GetMapping("/encontrar-codigo-barra/{id}")
+	@GetMapping("/codigobarra/{id}")
 	public ResponseEntity<?> encontrarCredencialCodigoBarraPorId(@PathVariable Long id){
 		CredencialCodigoBarra credencial = repositorioCredencialCodigoBarra.findById(id).orElse(null);
 		if(credencial == null) {
@@ -181,7 +181,7 @@ public class CredencialControle {
 		}
 	}
 	
-	@PostMapping("/cadastrar-codigo-barra/{idUsuario}")
+	@PostMapping("/codigobarra/{idUsuario}")
 	public ResponseEntity<?> cadastrarCredencialCodigoBarra(@RequestBody CredencialCodigoBarra dados, @PathVariable Long idUsuario){
 		Usuario usuario = repositorioUsuario.findById(idUsuario).orElse(null);
 		if(usuario == null) {
@@ -207,7 +207,7 @@ public class CredencialControle {
 		}
 	}
 	
-	@PutMapping("/atualizar-codigo-barra/{idCredencial}")
+	@PutMapping("/codigobarra/{idCredencial}")
 	public ResponseEntity<?> atualizarCredencialCodigoBarra(@PathVariable Long idCredencial, @RequestBody CredencialCodigoBarra dados){
 		CredencialCodigoBarra credencial = repositorioCredencialCodigoBarra.findById(idCredencial).orElse(null);
 		if(credencial == null) {
@@ -222,7 +222,7 @@ public class CredencialControle {
 		}
 	}
 	
-	@DeleteMapping("/deletar-codigo-barra/{idCredencial}")
+	@DeleteMapping("/codigobarra/{idCredencial}")
 	public ResponseEntity<?> deletarCredencialCodigoBarra(@PathVariable Long idCredencial){
 		CredencialCodigoBarra verificacao = repositorioCredencialCodigoBarra.findById(idCredencial).orElse(null);
 		if(verificacao == null) {
