@@ -16,15 +16,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.autobots.automanager.entitades.Empresa;
-import com.autobots.automanager.entitades.Mercadoria;
-import com.autobots.automanager.entitades.Servico;
-import com.autobots.automanager.entitades.Usuario;
-import com.autobots.automanager.entitades.Veiculo;
-import com.autobots.automanager.entitades.Venda;
+import com.autobots.automanager.entidades.Empresa;
+import com.autobots.automanager.entidades.Mercadoria;
+import com.autobots.automanager.entidades.Servico;
+import com.autobots.automanager.entidades.Usuario;
+import com.autobots.automanager.entidades.Veiculo;
+import com.autobots.automanager.entidades.Venda;
+import com.autobots.automanager.modelos.VendaModelo;
 import com.autobots.automanager.modelos.VendaAtualizador;
 import com.autobots.automanager.modelos.VendaSelecionador;
-import com.autobots.automanager.models.AdicionadorLinkVenda;
+import com.autobots.automanager.modelos.AdicionadorLinkVendas;
 import com.autobots.automanager.repositorios.EmpresaRepositorio;
 import com.autobots.automanager.repositorios.MercadoriaRepositorio;
 import com.autobots.automanager.repositorios.ServicoRepositorio;
@@ -60,7 +61,7 @@ public class VendaControle {
 	private VeiculoRepositorio veiculoRepositorio;
 	
 	@Autowired
-	private AdicionadorLinkVenda adicionarLink;
+	private AdicionadorLinkVendas adicionarLink;
 
 	@GetMapping("/vendas")
 	public ResponseEntity<List<Venda>> encontrarVendas() {
@@ -77,7 +78,8 @@ public class VendaControle {
 
 	@GetMapping("/venda/{id}")
 	public ResponseEntity<Venda> encontrarVenda(@PathVariable Long id){
-		Venda venda = selecionador.selecionar(id);
+		List<Venda> vendas = repositorio.findAll();
+		Venda venda = selecionador.seleciona(vendas, id);
 		HttpStatus status = null;
 		if(venda == null) {
 			status = HttpStatus.NOT_FOUND;
@@ -91,7 +93,7 @@ public class VendaControle {
 	}
 
 	@PostMapping("/venda/cadastro")
-	public ResponseEntity<Empresa> cadastrarVenda(@RequestBody VendaModel dados){
+	public ResponseEntity<Empresa> cadastrarVenda(@RequestBody VendaModelo dados){
 		Empresa empresa = empresaRepositorio.findById(dados.getIdEmpresa()).orElse(null);
 		Venda venda = new Venda();
 		if(empresa == null) {
@@ -192,7 +194,7 @@ public class VendaControle {
 					}
 				}
 			}
-			for (Usuario usuario : repositorioUsuario.findAll()) {
+			for (Usuario usuario : usuarioRepositorio.findAll()) {
 				if (!usuario.getVendas().isEmpty()) {
 					for (Venda vendaUsuario : usuario.getVendas()) {
 						if (vendaUsuario.getId() == idVenda) {

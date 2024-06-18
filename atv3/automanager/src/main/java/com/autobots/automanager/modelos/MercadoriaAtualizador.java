@@ -2,7 +2,7 @@ package com.autobots.automanager.modelos;
 
 import java.util.List;
 
-import com.autobots.automanager.entitades.Mercadoria;
+import com.autobots.automanager.entidades.Mercadoria;
 import com.autobots.automanager.modelos.StringVerificadorNulo;
 
 public class MercadoriaAtualizador {
@@ -10,7 +10,7 @@ public class MercadoriaAtualizador {
     
     public void atualizar(Mercadoria mercadoria, Mercadoria atualizacao) {
             if (atualizacao != null) {
-                if (!verificador.verificar(atualizacao.getValor())) {
+                if (!(atualizacao.getValor() == 0)) {
                     mercadoria.setValor(atualizacao.getValor());
                 }
                 if (!verificador.verificar(atualizacao.getNome())) {
@@ -19,17 +19,20 @@ public class MercadoriaAtualizador {
                 if (!verificador.verificar(atualizacao.getDescricao())) {
                     mercadoria.setDescricao(atualizacao.getDescricao());
                 }
-                if (!verificador.verificar(atualizacao.getFabricacao())) {
+                if (!(atualizacao.getFabricacao() == null)) {
                     mercadoria.setFabricacao(atualizacao.getFabricacao());
                 }
-                if (!verificador.verificar(atualizacao.getValidade())) {
+                if (!(atualizacao.getValidade() == null)) {
                     mercadoria.setValidade(atualizacao.getValidade());
                 }
-                if (!verificador.verificar(atualizacao.getQuantidade())) {
+                if (!(atualizacao.getQuantidade() == 0)) {
                     mercadoria.setQuantidade(atualizacao.getQuantidade());
                 }
-                if (!verificador.verificar(atualizacao.getCadastro())) {
+                if (!(atualizacao.getCadastro() == null)) {
                     mercadoria.setCadastro(atualizacao.getCadastro());
+                }
+                if (!(atualizacao.getOriginal() == null)) {
+                    mercadoria.setOriginal(atualizacao.getOriginal());
                 }
             }
         }

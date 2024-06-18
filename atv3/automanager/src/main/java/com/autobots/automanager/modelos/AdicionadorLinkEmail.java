@@ -7,7 +7,7 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Component;
 
 import com.autobots.automanager.controles.EmailControle;
-import com.autobots.automanager.entitades.Email;
+import com.autobots.automanager.entidades.Email;
 
 @Component
 public class AdicionadorLinkEmail implements AdicionadorLink<Email>{

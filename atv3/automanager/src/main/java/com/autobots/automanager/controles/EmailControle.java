@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.autobots.automanager.entitades.Email;
-import com.autobots.automanager.entitades.Usuario;
+import com.autobots.automanager.entidades.Email;
+import com.autobots.automanager.entidades.Usuario;
 import com.autobots.automanager.modelos.EmailAtualizador;
 import com.autobots.automanager.modelos.EmailSelecionador;
-import com.autobots.automanager.models.AdicionadorLinkEmail;
+import com.autobots.automanager.modelos.AdicionadorLinkEmail;
 import com.autobots.automanager.repositorios.EmailRepositorio;
 import com.autobots.automanager.repositorios.UsuarioRepositorio;
 
@@ -53,7 +53,8 @@ public class EmailControle {
 	
 	@GetMapping("/email/{id}")
 	public ResponseEntity<Email> encontrarEmail(@PathVariable Long id){
-		Email email = selecionador.selecionar(id); 
+		List<Email> emails = repositorio.findAll();
+		Email email = selecionador.seleciona(emails, id); 
 		HttpStatus status = null;
 		if(email == null) {
 			status = HttpStatus.NOT_FOUND;

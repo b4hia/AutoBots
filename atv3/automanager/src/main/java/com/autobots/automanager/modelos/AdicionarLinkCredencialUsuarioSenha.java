@@ -7,7 +7,7 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Component;
 
 import com.autobots.automanager.controles.CredencialControle;
-import com.autobots.automanager.entitades.CredencialUsuarioSenha;
+import com.autobots.automanager.entidades.CredencialUsuarioSenha;
 
 @Component
 public class AdicionarLinkCredencialUsuarioSenha implements AdicionadorLink<CredencialUsuarioSenha>{

@@ -7,7 +7,7 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Component;
 
 import com.autobots.automanager.controles.MercadoriaControle;
-import com.autobots.automanager.entitades.Mercadoria;
+import com.autobots.automanager.entidades.Mercadoria;
 
 @Component
 public class AdicionadorLinkMercadoria implements AdicionadorLink<Mercadoria>{

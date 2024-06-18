@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.autobots.automanager.entidades.Documento;
-import com.autobots.automanager.modelos.AdicionarLinkDocumento;
-import com.autobots.automanager.modelos.ClienteAtualizador;
+import com.autobots.automanager.modelos.AdicionadorLinkDocumento;
+import com.autobots.automanager.modelos.UsuarioAtualizador;
 import com.autobots.automanager.modelos.DocumentoAtualizador;
 import com.autobots.automanager.modelos.DocumentoSelecionador;
 import com.autobots.automanager.repositorios.DocumentoRepositorio;
@@ -29,12 +29,12 @@ public class DocumentoControle {
     @Autowired
 	private DocumentoAtualizador atualizador;
 	@Autowired
-    private AdicionarLinkDocumento adicionadorLink;
+    private AdicionadorLinkDocumento adicionadorLink;
 
     @GetMapping("/documento/{id}")
 	public ResponseEntity<Documento> obterDocumento(@PathVariable long id) {
 		List<Documento> documentos = repositorio.findAll();
-		Documento documento = selecionador.selecionar(documentos, id);
+		Documento documento = selecionador.seleciona(documentos, id);
 		if (documento == null) {
 			ResponseEntity<Documento> resposta = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			return resposta;

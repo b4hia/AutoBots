@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.autobots.automanager.entitades.Empresa;
+import com.autobots.automanager.entidades.Empresa;
 import com.autobots.automanager.modelos.EmpresaSelecionador;
-import com.autobots.automanager.models.AdicionadorLinkEmpresa;
+import com.autobots.automanager.modelos.AdicionadorLinkEmpresa;
 import com.autobots.automanager.repositorios.EmpresaRepositorio;
 
-import main.java.com.autobots.automanager.modelos.EmpresaAtualizador;
+import com.autobots.automanager.modelos.EmpresaAtualizador;
 
 @RestController
 public class EmpresaControle {
@@ -52,17 +52,18 @@ public class EmpresaControle {
 	
 	@GetMapping("/empresa/{id}")
 	public ResponseEntity<Empresa> encontrarEmpresa(@PathVariable Long id){
-    Empresa empresa = selecionador.selecionar(id);
-    HttpStatus status = null;
-    if(empresa == null) {
-        status = HttpStatus.NOT_FOUND;
-    }else {
-        adicionarLink.adicionarLink(empresa);
-        adicionarLink.adicionarLinkUpdate(empresa);
-        adicionarLink.adicionarLinkDelete(empresa);
-        status = HttpStatus.FOUND;
-    }
-    	return new ResponseEntity<Empresa>(empresa,status);
+		List<Empresa> empresas = repositorio.findAll();
+		Empresa empresa = selecionador.seleciona(empresas, id);
+		HttpStatus status = null;
+		if(empresa == null) {
+			status = HttpStatus.NOT_FOUND;
+		}else {
+			adicionarLink.adicionarLink(empresa);
+			adicionarLink.adicionarLinkUpdate(empresa);
+			adicionarLink.adicionarLinkDelete(empresa);
+			status = HttpStatus.FOUND;
+		}
+			return new ResponseEntity<Empresa>(empresa,status);
 	}
 	
 	@PostMapping("/empresa/cadastro")

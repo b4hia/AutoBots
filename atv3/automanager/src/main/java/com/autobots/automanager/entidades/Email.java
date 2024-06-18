@@ -1,4 +1,4 @@
-package com.autobots.automanager.entitades;
+package com.autobots.automanager.entidades;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,5 +15,5 @@ public class Email extends RepresentationModel<Email>{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(nullable = false)
-	private String endereco;
+	private String email;
 }

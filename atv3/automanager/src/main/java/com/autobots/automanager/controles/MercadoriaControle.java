@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.autobots.automanager.entitades.Empresa;
-import com.autobots.automanager.entitades.Mercadoria;
-import com.autobots.automanager.entitades.Usuario;
-import com.autobots.automanager.entitades.Venda;
+import com.autobots.automanager.entidades.Empresa;
+import com.autobots.automanager.entidades.Mercadoria;
+import com.autobots.automanager.entidades.Usuario;
+import com.autobots.automanager.entidades.Venda;
 import com.autobots.automanager.modelos.MercadoriaAtualizador;
 import com.autobots.automanager.modelos.MercadoriaSelecionador;
-import com.autobots.automanager.models.AdicionadorLinkMercadoria;
+import com.autobots.automanager.modelos.AdicionadorLinkMercadoria;
 import com.autobots.automanager.repositorios.EmpresaRepositorio;
 import com.autobots.automanager.repositorios.MercadoriaRepositorio;
 import com.autobots.automanager.repositorios.UsuarioRepositorio;
@@ -70,8 +70,9 @@ public class MercadoriaControle {
 	}
 	
 	@GetMapping("/mercadoria/{id}")
-	public ResponseEntity<Mercadoria> encontrarMercadoria(@PathVariable Long id){
-    Mercadoria mercadoria = selecionador.selecionar(id);
+	public ResponseEntity<Mercadoria> obterMercadoria(@PathVariable Long id){
+	List<Mercadoria> mercadorias =  repositorio.findAll();
+    Mercadoria mercadoria = selecionador.seleciona(mercadorias, id);
     HttpStatus status = null;
     if(mercadoria == null) {
         status = HttpStatus.NOT_FOUND;

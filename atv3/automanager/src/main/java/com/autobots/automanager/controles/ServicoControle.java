@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.autobots.automanager.entitades.Empresa;
-import com.autobots.automanager.entitades.Servico;
-import com.autobots.automanager.entitades.Venda;
+import com.autobots.automanager.entidades.Empresa;
+import com.autobots.automanager.entidades.Servico;
+import com.autobots.automanager.entidades.Venda;
 import com.autobots.automanager.modelos.ServicoAtualizador;
 import com.autobots.automanager.modelos.ServicoSelecionador;
-import com.autobots.automanager.models.AdicionadorLinkServico;
+import com.autobots.automanager.modelos.AdicionadorLinkServico;
 import com.autobots.automanager.repositorios.EmpresaRepositorio;
 import com.autobots.automanager.repositorios.ServicoRepositorio;
 import com.autobots.automanager.repositorios.VendaRepositorio;
@@ -60,17 +60,18 @@ public class ServicoControle {
 	
 	@GetMapping("/servico/{id}")
 	public ResponseEntity<Servico> encontrarServico(@PathVariable Long id){
-    Servico servico = selecionador.selecionar(id);
-    HttpStatus status = null;
-    if(servico == null) {
-        status = HttpStatus.NOT_FOUND;
-    }else {
-        adicionarLink.adicionarLink(servico);
-        adicionarLink.adicionarLinkUpdate(servico);
-        adicionarLink.adicionarLinkDelete(servico);
-        status = HttpStatus.FOUND;
-    }
-    return new ResponseEntity<Servico>(servico,status);
+		List<Servico> servicos = repositorio.findAll();
+		Servico servico = selecionador.seleciona(servicos, id);
+		HttpStatus status = null;
+		if(servico == null) {
+			status = HttpStatus.NOT_FOUND;
+		}else {
+			adicionarLink.adicionarLink(servico);
+			adicionarLink.adicionarLinkUpdate(servico);
+			adicionarLink.adicionarLinkDelete(servico);
+			status = HttpStatus.FOUND;
+		}
+		return new ResponseEntity<Servico>(servico,status);
 	}
 	
 	@PostMapping("/servico/cadastro/{idEmpresa}")

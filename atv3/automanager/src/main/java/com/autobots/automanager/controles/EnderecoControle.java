@@ -35,7 +35,7 @@ public class EnderecoControle {
     @GetMapping("/endereco/{id}")
 	public ResponseEntity<Endereco> obterEndereco(@PathVariable long id) {
 		List<Endereco> enderecos = repositorio.findAll();
-		Documento endereco = selecionador.selecionar(enderecos, id);
+		Endereco endereco = selecionador.seleciona(enderecos, id);
 		if (endereco == null) {
 			ResponseEntity<Endereco> resposta = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			return resposta;

@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.autobots.automanager.entitades.Usuario;
-import com.autobots.automanager.entitades.Veiculo;
-import com.autobots.automanager.entitades.Venda;
+import com.autobots.automanager.entidades.Usuario;
+import com.autobots.automanager.entidades.Veiculo;
+import com.autobots.automanager.entidades.Venda;
 import com.autobots.automanager.modelos.VeiculoAtualizador;
-import com.autobots.automanager.models.AdicionadorLinkVeiculo;
+import com.autobots.automanager.modelos.AdicionadorLinkVeiculo;
 import com.autobots.automanager.repositorios.UsuarioRepositorio;
 import com.autobots.automanager.repositorios.VeiculoRepositorio;
 import com.autobots.automanager.repositorios.VendaRepositorio;
 
-import main.java.com.autobots.automanager.modelos.VeiculoSelecionador;
+import com.autobots.automanager.modelos.VeiculoSelecionador;
 
 @RestController
 public class VeiculoControle {
@@ -60,7 +60,8 @@ public class VeiculoControle {
 	
 	@GetMapping("/veiculo/{id}")
 	public ResponseEntity<Veiculo> encontrarVeiculo(@PathVariable Long id){
-		Veiculo veiculo = selecionador.selecionar(id); 
+		List<Veiculo> veiculos = repositorio.findAll();
+		Veiculo veiculo = selecionador.seleciona(veiculos, id); 
 		HttpStatus status = null;
 		if(veiculo == null) {
 			status = HttpStatus.NOT_FOUND;

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.autobots.automanager.entitades.Empresa;
+import com.autobots.automanager.entidades.Empresa;
 
 
 public class EmpresaSelecionador {

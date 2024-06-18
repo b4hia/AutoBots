@@ -9,6 +9,8 @@ public class UsuarioAtualizador {
 	private DocumentoAtualizador documentoAtualizador = new DocumentoAtualizador();
 	private TelefoneAtualizador telefoneAtualizador = new TelefoneAtualizador();
 	private VeiculoAtualizador veiculoAtualizador = new VeiculoAtualizador();
+	private EmailAtualizador emailAtualizador = new EmailAtualizador();
+	private VendaAtualizador vendaAtualizador = new VendaAtualizador();
 
 	private void atualizarDados(Usuario usuario, Usuario atualizacao) {
 		if (!verificador.verificar(atualizacao.getNome())) {
@@ -17,11 +19,11 @@ public class UsuarioAtualizador {
 		if (!verificador.verificar(atualizacao.getNomeSocial())) {
 			usuario.setNomeSocial(atualizacao.getNomeSocial());
 		}
-		if (!(atualizacao.getDataCadastro() == null)) {
-			usuario.setDataCadastro(atualizacao.getDataCadastro());
+		if (!(atualizacao.getDatacadastro() == null)) {
+			usuario.setDatacadastro(atualizacao.getDatacadastro());
 		}
-		if (!(atualizacao.getDataNascimento() == null)) {
-			usuario.setDataNascimento(atualizacao.getDataNascimento());
+		if (!(atualizacao.getDatanascimento() == null)) {
+			usuario.setDatanascimento(atualizacao.getDatanascimento());
 		}
 	}
 

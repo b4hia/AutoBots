@@ -1,4 +1,4 @@
-package com.autobots.automanager.models;
+package com.autobots.automanager.modelos;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Component;
 
 import com.autobots.automanager.controles.CredencialControle;
-import com.autobots.automanager.entitades.CredencialCodigoBarra;
+import com.autobots.automanager.entidades.CredencialCodigoBarra;
 
 @Component
 public class AdicionadorLinkCredencialCodigoDeBarra implements AdicionadorLink<CredencialCodigoBarra>{

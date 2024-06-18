@@ -1,4 +1,4 @@
-package com.autobots.automanager.entitades;
+package com.autobots.automanager.entidades;
 
 import java.util.Date;
 
@@ -19,7 +19,7 @@ public class Mercadoria extends RepresentationModel<Mercadoria> {
 	@Column(nullable = false)
 	private Date validade;
 	@Column(nullable = false)
-	private Date fabricao;
+	private Date fabricacao;
 	@Column(nullable = false)
 	private Date cadastro;
 	@Column(nullable = false)
@@ -30,4 +30,6 @@ public class Mercadoria extends RepresentationModel<Mercadoria> {
 	private double valor;
 	@Column()
 	private String descricao;
+	@Column()
+	private Boolean original;
 }

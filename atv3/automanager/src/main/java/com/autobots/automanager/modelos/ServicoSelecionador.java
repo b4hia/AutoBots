@@ -2,7 +2,7 @@ package com.autobots.automanager.modelos;
 
 import java.util.List;
 
-import com.autobots.automanager.entitades.Servico;
+import com.autobots.automanager.entidades.Servico;
 
 import org.springframework.stereotype.Component;
 

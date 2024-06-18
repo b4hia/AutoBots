@@ -1,9 +1,9 @@
-package main.java.com.autobots.automanager.modelos;
+package com.autobots.automanager.modelos;
 
 import java.util.List;
 
-import com.autobots.automanager.entitades.Empresa;
-import com.autobots.automanager.entitades.Mercadoria;
+import com.autobots.automanager.entidades.Empresa;
+import com.autobots.automanager.entidades.Mercadoria;
 import com.autobots.automanager.modelos.EnderecoAtualizador;
 import com.autobots.automanager.modelos.MercadoriaAtualizador;
 import com.autobots.automanager.modelos.ServicoAtualizador;
@@ -30,8 +30,8 @@ public class EmpresaAtualizador {
                 if (!verificador.verificar(atualizacao.getNomeFantasia())) {
                     empresa.setNomeFantasia(atualizacao.getNomeFantasia());
                 }
-                if (!(atualizacao.getDataCadastro() == null)) {
-                    empresa.setDataCadastro(atualizacao.getDataCadastro());
+                if (!(atualizacao.getCadastro() == null)) {
+                    empresa.setCadastro(atualizacao.getCadastro());
                 }
             }
         }

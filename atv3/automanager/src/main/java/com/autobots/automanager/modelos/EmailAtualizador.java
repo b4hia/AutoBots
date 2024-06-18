@@ -2,7 +2,7 @@ package com.autobots.automanager.modelos;
 
 import java.util.List;
 
-import com.autobots.automanager.entitades.Email;
+import com.autobots.automanager.entidades.Email;
 import com.autobots.automanager.modelos.StringVerificadorNulo;
 
 public class EmailAtualizador {
@@ -10,7 +10,7 @@ public class EmailAtualizador {
 
 	public void atualizar(Email email, Email atualizacao) {
 		if (atualizacao != null) {
-			if (!verificador.verificar(atualizacao.getDdd())) {
+			if (!verificador.verificar(atualizacao.getEmail())) {
 				email.setEmail(atualizacao.getEmail());
 			}
 		}

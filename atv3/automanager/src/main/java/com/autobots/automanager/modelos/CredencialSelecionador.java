@@ -2,7 +2,7 @@ package com.autobots.automanager.modelos;
 
 import java.util.List;
 
-import com.autobots.automanager.entitades.Credencial;
+import com.autobots.automanager.entidades.Credencial;
 
 import org.springframework.stereotype.Component;
 

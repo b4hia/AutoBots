@@ -8,7 +8,7 @@ import com.autobots.automanager.entidades.Usuario;
 
 @Component
 public class UsuarioSelecionador {
-	public Usuario selecionar(List<Usuario> usuarios, long id) {
+	public Usuario seleciona(List<Usuario> usuarios, long id) {
 		Usuario selecionado = null;
 		for (Usuario usuario : usuarios) {
 			if (usuario.getId() == id) {

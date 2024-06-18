@@ -3,29 +3,28 @@ package com.autobots.automanager.modelos;
 import java.util.List;
 
 import com.autobots.automanager.entidades.Venda;
-import com.autobots.automanager.modelos.StringVerificadorNulo;
 
 public class VendaAtualizador {
-private StringVerificadorNulo verificador = new StringVerificadorNulo();
+
 
 public void atualizar(Venda venda, Venda atualizacao) {
         if (atualizacao != null) {
-            if (!verificador.verificar(atualizacao.getCliente())) {
+            if (!(atualizacao.getCliente() == null)) {
                 venda.setCliente(atualizacao.getCliente());
             }
-            if (!verificador.verificar(atualizacao.getVeiculo())) {
+            if (!(atualizacao.getVeiculo() == null)) {
                 venda.setVeiculo(atualizacao.getVeiculo());
             }
-            if (!verificador.verificar(atualizacao.getMercadoria())) {
-                venda.setMercadoria(atualizacao.getMercadoria());
+            if (!(atualizacao.getMercadorias() == null)) {
+                venda.setMercadorias(atualizacao.getMercadorias());
             }
-            if (!verificador.verificar(atualizacao.getServico())) {
-                venda.setServico(atualizacao.getServico());
+            if (!(atualizacao.getServicos() == null)) {
+                venda.setServicos(atualizacao.getServicos());
             }
-            if (!verificador.verificar(atualizacao.getFuncionario())) {
+            if (!(atualizacao.getFuncionario() == null)) {
                 venda.setFuncionario(atualizacao.getFuncionario());
             }
-            if (!verificador.verificar(atualizacao.getCadastro())) {
+            if (!(atualizacao.getCadastro() == null)) {
                 venda.setCadastro(atualizacao.getCadastro());
             }
         }

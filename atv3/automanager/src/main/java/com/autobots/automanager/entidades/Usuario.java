@@ -1,5 +1,6 @@
-package com.autobots.automanager.entitades;
+package com.autobots.automanager.entidades;
 
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +22,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(exclude = { "mercadorias", "vendas", "veiculos" })
+@EqualsAndHashCode(exclude = { "mercadorias", "vendas", "veiculos" });
 @Entity
 public class Usuario extends RepresentationModel<Usuario> {
 	@Id
@@ -33,6 +34,12 @@ public class Usuario extends RepresentationModel<Usuario> {
 
 	@Column
 	private String nomeSocial;
+
+	@Column
+	private Date datacadastro;
+
+	@Column
+	private Date datanascimento;
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	private Set<PerfilUsuario> perfis = new HashSet<>();

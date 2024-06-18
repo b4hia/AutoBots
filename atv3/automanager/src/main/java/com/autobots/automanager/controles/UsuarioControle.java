@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.autobots.automanager.entitades.Empresa;
-import com.autobots.automanager.entitades.Usuario;
-import com.autobots.automanager.entitades.Veiculo;
-import com.autobots.automanager.entitades.Venda;
+import com.autobots.automanager.entidades.Empresa;
+import com.autobots.automanager.entidades.Usuario;
+import com.autobots.automanager.entidades.Veiculo;
+import com.autobots.automanager.entidades.Venda;
 import com.autobots.automanager.enumeracoes.PerfilUsuario;
 import com.autobots.automanager.modelos.UsuarioAtualizador;
 import com.autobots.automanager.modelos.UsuarioSelecionador;
-import com.autobots.automanager.models.AdicionadorLinkUsuario;
+import com.autobots.automanager.modelos.AdicionadorLinkUsuario;
 import com.autobots.automanager.repositorios.EmpresaRepositorio;
 import com.autobots.automanager.repositorios.UsuarioRepositorio;
 import com.autobots.automanager.repositorios.VeiculoRepositorio;
@@ -67,7 +67,8 @@ public class UsuarioControle {
 	
 	@GetMapping("/usuario/{id}")
 	public ResponseEntity<Usuario> encontrarUsuario(@PathVariable Long id){
-		Usuario usuario = selecionador.selecionar(id);
+		List<Usuario> usuarios = repositorio.findAll();
+		Usuario usuario = selecionador.seleciona(usuarios, id);
 		HttpStatus status = null;
 		if(usuario == null) {
 			status = HttpStatus.NOT_FOUND;

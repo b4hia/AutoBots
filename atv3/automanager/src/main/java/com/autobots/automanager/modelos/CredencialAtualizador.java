@@ -1,9 +1,9 @@
-package main.java.com.autobots.automanager.modelos;
+package com.autobots.automanager.modelos;
 
 import java.util.List;
 
-import com.autobots.automanager.entitades.Credencial;
-import com.autobots.automanager.entitades.Servico;
+import com.autobots.automanager.entidades.Credencial;
+import com.autobots.automanager.entidades.Servico;
 
 public class CredencialAtualizador {
 
@@ -11,13 +11,13 @@ public class CredencialAtualizador {
 
     public void atualizar(Credencial credencial, Credencial atualizacao) {
         if (atualizacao != null) {
-            if (!atualizacao.verificar(atualizacao.getCriacao())) {
+            if (!(atualizacao.getCriacao() == null)) {
                 credencial.setCriacao(atualizacao.getCriacao());
             }
-            if (!verificador.verificar(atualizacao.getUltimoAcesso())) {
+            if (!(atualizacao.getUltimoAcesso() == null)) {
                 credencial.setUltimoAcesso(atualizacao.getUltimoAcesso());
             }
-            if (!verificador.verificar(atualizacao.getInativo())) {
+            if (!(atualizacao.getInativo() == null)) {
                 credencial.setInativo(atualizacao.getInativo());
             }
         }

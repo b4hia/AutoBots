@@ -36,7 +36,7 @@ public class TelefoneControle {
     @GetMapping("/telefone/{id}")
 	public ResponseEntity<Telefone> obterTelefone(@PathVariable long id) {
 		List<Telefone> telefones = repositorio.findAll();
-		Telefone telefone = selecionador.selecionar(telefones, id);
+		Telefone telefone = selecionador.seleciona(telefones, id);
 		if (telefone == null) {
 			ResponseEntity<Telefone> resposta = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			return resposta;

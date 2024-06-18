@@ -2,7 +2,7 @@ package com.autobots.automanager.modelos;
 
 import java.util.List;
 
-import com.autobots.automanager.entitades.Servico;
+import com.autobots.automanager.entidades.Servico;
 import com.autobots.automanager.modelos.StringVerificadorNulo;
 
 public class ServicoAtualizador{
@@ -10,7 +10,7 @@ public class ServicoAtualizador{
     
     public void atualizar(Servico servico, Servico atualizacao) {
             if (atualizacao != null) {
-                if (!verificador.verificar(atualizacao.getValor())) {
+                if (!(atualizacao.getValor() == 0)) {
                     servico.setValor(atualizacao.getValor());
                 }
                 if (!verificador.verificar(atualizacao.getNome())) {

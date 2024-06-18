@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.autobots.automanager.entitades.Credencial;
-import com.autobots.automanager.entitades.CredencialCodigoBarra;
-import com.autobots.automanager.entitades.CredencialUsuarioSenha;
-import com.autobots.automanager.entitades.Usuario;
+import com.autobots.automanager.entidades.Credencial;
+import com.autobots.automanager.entidades.CredencialCodigoBarra;
+import com.autobots.automanager.entidades.CredencialUsuarioSenha;
+import com.autobots.automanager.entidades.Usuario;
 import com.autobots.automanager.modelos.CredencialSelecionador;
-import com.autobots.automanager.models.AddLinkCredencialCodigoDeBarra;
-import com.autobots.automanager.models.AddLinkCredencialUsuarioSenha;
+import com.autobots.automanager.modelos.AdicionadorLinkCredencialCodigoDeBarra;
+import com.autobots.automanager.modelos.AdicionarLinkCredencialUsuarioSenha;
 import com.autobots.automanager.repositorios.CodigoBarraRepositorio;
 import com.autobots.automanager.repositorios.UsuarioRepositorio;
 
-import main.java.com.autobots.automanager.modelos.CredencialAtualizador;
+import com.autobots.automanager.modelos.CredencialAtualizador;
 
 @RestController
 public class CredencialControle {
@@ -45,10 +45,10 @@ public class CredencialControle {
 	private UsuarioRepositorio repositorioUsuario;
 	
 	@Autowired
-	private AddLinkCredencialUsuarioSenha adicionarLinkCredencialUserSenha;
+	private AdicionarLinkCredencialUsuarioSenha adicionarLinkCredencialUserSenha;
 	
 	@Autowired
-	private AddLinkCredencialCodigoDeBarra adicionarLinkCredencialCodigoDeBarra;
+	private AdicionadorLinkCredencialCodigoDeBarra adicionarLinkCredencialCodigoDeBarra;
 	
 	@GetMapping("/credenciais")
 	public ResponseEntity<?> listaCredenciais(){
@@ -67,7 +67,7 @@ public class CredencialControle {
 	
 	@GetMapping("/credencial/{id}")
 	public ResponseEntity<Credencial> encontrarCredencial(@PathVariable Long id){
-		Credencial credencial = selecionadorCredencial.selecionar(id);
+		Credencial credencial = selecionadorCredencial.seleciona(id);
 		HttpStatus status = null;
 		if(credencial == null) {
 			status = HttpStatus.NOT_FOUND;

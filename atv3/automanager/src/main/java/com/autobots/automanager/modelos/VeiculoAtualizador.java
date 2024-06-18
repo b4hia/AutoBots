@@ -16,15 +16,15 @@ public class VeiculoAtualizador {
 				veiculo.setPlaca(atualizacao.getPlaca());
 			}
 			if (!verificador.verificar(atualizacao.getModelo())) {
-				veiculo.setModelo(atualizacao.getmodelo());
+				veiculo.setModelo(atualizacao.getModelo());
 			}
-			if (!verificador.verificar(atualizacao.getProprietario())) {
+			if (!(atualizacao.getProprietario() == null)) {
 				veiculo.setProprietario(atualizacao.getProprietario());
 			}
-			if (!verificador.verificar(atualizacao.getVenda())) {
-				veiculo.setVenda(atualizacao.getVenda());
+			if (!(atualizacao.getVendas() == null)) {
+				veiculo.setVendas(atualizacao.getVendas());
 			}
-			if (!verificador.verificar(atualizacao.getTipo())) {
+			if (!(atualizacao.getTipo() == null)) {
 				veiculo.setTipo(atualizacao.getTipo());
 			}
 		}
