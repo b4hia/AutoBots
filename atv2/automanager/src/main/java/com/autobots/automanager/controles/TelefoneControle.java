@@ -28,6 +28,8 @@ public class TelefoneControle {
     private TelefoneRepositorio repositorio;
     @Autowired
     private TelefoneSelecionador selecionador;
+	@Autowired
+	private TelefoneAtualizador atualizador;
     @Autowired
     private AdicionadorLinkTelefone adicionadorLink;
 

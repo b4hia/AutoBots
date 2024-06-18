@@ -26,6 +26,8 @@ public class DocumentoControle {
     private DocumentoRepositorio repositorio;
     @Autowired
     private DocumentoSelecionador selecionador;
+	@Autowired
+	private DocumentoAtualizador atualizador;
     @Autowired
     private AdicionarLinkDocumento adicionadorLink;
 

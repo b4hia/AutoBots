@@ -27,6 +27,8 @@ public class EnderecoControle {
     private EnderecoRepositorio repositorio;
     @Autowired
     private EnderecoSelecionador selecionador;
+	@Autowired
+	private EnderecoAtualizador atualizador;
     @Autowired
     private AdicionadorLinkEndereco adicionadorLink;
 

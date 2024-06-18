@@ -26,6 +26,8 @@ public class ClienteControle {
 	@Autowired
 	private ClienteSelecionador selecionador;
 	@Autowired
+	private ClienteAtualizador atualizador;
+	@Autowired
 	private AdicionadorLinkCliente adicionadorLink;
 
 	@GetMapping("/cliente/{id}")
