@@ -66,8 +66,8 @@ public class UsuarioControle {
 	}
 	
 	@GetMapping("/usuario/{id}")
-	public ResponseEntity<Usuario> listaUsuario(@PathVariable Long id){
-		Usuario usuario = repositorio.findById(id).orElse(null);
+	public ResponseEntity<Usuario> encontrarUsuario(@PathVariable Long id){
+		Usuario usuario = selecionador.selecionar(id);
 		HttpStatus status = null;
 		if(usuario == null) {
 			status = HttpStatus.NOT_FOUND;
@@ -117,20 +117,15 @@ public class UsuarioControle {
 		adicionarLink.adicionarLinkDelete(usuario);
 		return new ResponseEntity<Usuario>(usuario,HttpStatus.CREATED);
 	}
-	
+
 	@PutMapping("/usuario/atualizar/{idUsuario}")
 	public ResponseEntity<?> atualizarUsuario(@PathVariable Long idUsuario, @RequestBody Usuario dados){
-		Usuario usuario = repositorio.findById(idUsuario).orElse(null);
+    Usuario usuario = repositorio.findById(idUsuario).orElse(null);
 		if(usuario == null) {
 			return new ResponseEntity<String>("Usuario não encontrado...",HttpStatus.NOT_FOUND);
 		}else {
 			if(dados != null) {
-				if(dados.getNome() != null) {
-					usuario.setNome(dados.getNome());
-				}
-				if(dados.getNomeSocial() != null) {
-					usuario.setNomeSocial(dados.getNomeSocial());
-				}
+				atualizador.atualizar(usuario, dados);
 				repositorio.save(usuario);
 			}
 			return new ResponseEntity<>(usuario, HttpStatus.ACCEPTED);

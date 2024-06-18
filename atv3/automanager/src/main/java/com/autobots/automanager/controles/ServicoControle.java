@@ -60,17 +60,17 @@ public class ServicoControle {
 	
 	@GetMapping("/servico/{id}")
 	public ResponseEntity<Servico> encontrarServico(@PathVariable Long id){
-		Servico servico = repositorio.findById(id).orElse(null);
-		HttpStatus status = null;
-		if(servico == null) {
-			status = HttpStatus.NOT_FOUND;
-		}else {
-			adicionarLink.adicionarLink(servico);
-			adicionarLink.adicionarLinkUpdate(servico);
-			adicionarLink.adicionarLinkDelete(servico);
-			status = HttpStatus.FOUND;
-		}
-		return new ResponseEntity<Servico>(servico, status);
+    Servico servico = selecionador.selecionar(id);
+    HttpStatus status = null;
+    if(servico == null) {
+        status = HttpStatus.NOT_FOUND;
+    }else {
+        adicionarLink.adicionarLink(servico);
+        adicionarLink.adicionarLinkUpdate(servico);
+        adicionarLink.adicionarLinkDelete(servico);
+        status = HttpStatus.FOUND;
+    }
+    return new ResponseEntity<Servico>(servico,status);
 	}
 	
 	@PostMapping("/servico/cadastro/{idEmpresa}")
@@ -95,23 +95,16 @@ public class ServicoControle {
 	
 	@PutMapping("/servico/atualizar/{idServico}")
 	public ResponseEntity<?> atualizarServico(@PathVariable Long idServico, @RequestBody Servico dados){
-		Servico servico = repositorio.findById(idServico).orElse(null);
-		if(servico == null) {
-			return new ResponseEntity<>("Servico não encontrado", HttpStatus.NOT_FOUND);
-		}else {
-			if(dados != null) {
-				if(dados.getNome() != null) {
-					servico.setNome(dados.getNome());
-				}
-				if(dados.getDescricao() != null) {
-					servico.setDescricao(dados.getDescricao());
-				}
-				
-				servico.setValor(dados.getValor());
-				repositorio.save(servico);
-			}
-			return new ResponseEntity<>(servico,HttpStatus.ACCEPTED);
-		}
+    Servico servico = repositorio.findById(idServico).orElse(null);
+    if(servico == null) {
+        return new ResponseEntity<>("Servico não encontrado...", HttpStatus.NOT_FOUND);
+    }else {
+        if(dados != null) {
+            atualizador.atualizar(servico, dados);
+            repositorio.save(servico);
+        }
+        return new ResponseEntity<>(servico, HttpStatus.ACCEPTED);
+    }
 	}
 	
 	@DeleteMapping("/servico/excluir/{idServico}")

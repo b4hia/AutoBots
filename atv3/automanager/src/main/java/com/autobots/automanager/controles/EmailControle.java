@@ -53,7 +53,7 @@ public class EmailControle {
 	
 	@GetMapping("/email/{id}")
 	public ResponseEntity<Email> encontrarEmail(@PathVariable Long id){
-		Email email = repositorio.findById(id).orElse(null);
+		Email email = selecionador.selecionar(id); 
 		HttpStatus status = null;
 		if(email == null) {
 			status = HttpStatus.NOT_FOUND;
@@ -79,12 +79,10 @@ public class EmailControle {
 	public ResponseEntity<?> atualizarEmail(@PathVariable Long idEmail, @RequestBody Email dados){
 		Email email = repositorio.findById(idEmail).orElse(null);
 		if(email == null) {
-			return new ResponseEntity<>("Email não econtrado...", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("Email não encontrado...", HttpStatus.NOT_FOUND);
 		}else {
 			if(dados != null) {
-				if(dados.getEndereco() != null) {
-					email.setEndereco(dados.getEndereco());
-				}
+				atualizador.atualizar(email, dados);
 				repositorio.save(email);
 			}
 			return new ResponseEntity<>(email, HttpStatus.ACCEPTED);

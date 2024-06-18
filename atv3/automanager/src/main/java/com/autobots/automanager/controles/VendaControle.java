@@ -76,18 +76,18 @@ public class VendaControle {
 	}
 
 	@GetMapping("/venda/{id}")
-	public ResponseEntity<Venda> encontrarVenda(@PathVariable Long id) {
-		Venda venda = repositorio.findById(id).orElse(null);
+	public ResponseEntity<Venda> encontrarVenda(@PathVariable Long id){
+		Venda venda = selecionador.selecionar(id);
 		HttpStatus status = null;
-		if (venda == null) {
+		if(venda == null) {
 			status = HttpStatus.NOT_FOUND;
-		} else {
+		}else {
 			adicionarLink.adicionarLink(venda);
 			adicionarLink.adicionarLinkUpdate(venda);
 			adicionarLink.adicionarLinkDelete(venda);
 			status = HttpStatus.FOUND;
 		}
-		return new ResponseEntity<Venda>(venda, status);
+		return new ResponseEntity<Venda>(venda,status);
 	}
 
 	@PostMapping("/venda/cadastro")
@@ -164,9 +164,7 @@ public class VendaControle {
 			return new ResponseEntity<>("Venda não encontrada...", HttpStatus.NOT_FOUND);
 		} else {
 			if (dados != null) {
-				if (dados.getIdentificacao() != null) {
-					venda.setIdentificacao(dados.getIdentificacao());
-				}
+				atualizador.atualizar(venda, dados);
 				repositorio.save(venda);
 			}
 			return new ResponseEntity<>(venda, HttpStatus.ACCEPTED);

@@ -60,7 +60,7 @@ public class VeiculoControle {
 	
 	@GetMapping("/veiculo/{id}")
 	public ResponseEntity<Veiculo> encontrarVeiculo(@PathVariable Long id){
-		Veiculo veiculo = repositorio.findById(id).orElse(null);
+		Veiculo veiculo = selecionador.selecionar(id); 
 		HttpStatus status = null;
 		if(veiculo == null) {
 			status = HttpStatus.NOT_FOUND;
@@ -97,18 +97,13 @@ public class VeiculoControle {
 	public ResponseEntity<?> atualizarVeiculo(@PathVariable Long idVeiculo, @RequestBody Veiculo dados){
 		Veiculo veiculo = repositorio.findById(idVeiculo).orElse(null);
 		if(veiculo == null) {
-			return new ResponseEntity<>("Veiculo não encontrado...",HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("Veiculo não encontrado...", HttpStatus.NOT_FOUND);
 		}else {
 			if(dados != null) {
-				if(dados.getModelo() != null) {
-					veiculo.setModelo(dados.getModelo());
-				}
-				if(dados.getPlaca() != null) {
-					veiculo.setPlaca(dados.getPlaca());
-				}
+				atualizador.atualizar(veiculo, dados); 
 				repositorio.save(veiculo);
 			}
-			return new ResponseEntity<>(veiculo,HttpStatus.ACCEPTED);
+			return new ResponseEntity<>(veiculo, HttpStatus.ACCEPTED);
 		}
 	}
 	

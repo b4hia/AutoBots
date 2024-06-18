@@ -52,17 +52,17 @@ public class EmpresaControle {
 	
 	@GetMapping("/empresa/{id}")
 	public ResponseEntity<Empresa> encontrarEmpresa(@PathVariable Long id){
-		Empresa empresa = repositorio.findById(id).orElse(null);
-		HttpStatus status = null;
-		if(empresa == null) {
-			status = HttpStatus.NOT_FOUND;
-		}else {
-			adicionarLink.adicionarLink(empresa);
-			adicionarLink.adicionarLinkUpdate(empresa);
-			adicionarLink.adicionarLinkDelete(empresa);
-			status = HttpStatus.FOUND;
-		}
-		return new ResponseEntity<Empresa>(empresa,status);
+    Empresa empresa = selecionador.selecionar(id);
+    HttpStatus status = null;
+    if(empresa == null) {
+        status = HttpStatus.NOT_FOUND;
+    }else {
+        adicionarLink.adicionarLink(empresa);
+        adicionarLink.adicionarLinkUpdate(empresa);
+        adicionarLink.adicionarLinkDelete(empresa);
+        status = HttpStatus.FOUND;
+    }
+    	return new ResponseEntity<Empresa>(empresa,status);
 	}
 	
 	@PostMapping("/empresa/cadastro")
@@ -77,22 +77,17 @@ public class EmpresaControle {
 	
 	@PutMapping("/empresa/atualizar/{idEmpresa}")
 	public ResponseEntity<?> atualizarEmpresa(@PathVariable Long idEmpresa, @RequestBody Empresa dados){
-		Empresa empresa = repositorio.findById(idEmpresa).orElse(null);
-		if(empresa == null) {
-			return new ResponseEntity<>("Empresa não econtrada...", HttpStatus.NOT_FOUND);
-		}else {
-			if(dados != null) {
-				if(dados.getNomeFantasia() != null) {
-					empresa.setNomeFantasia(dados.getNomeFantasia());
-				}
-				if(dados.getRazaoSocial() != null) {
-					empresa.setRazaoSocial(dados.getRazaoSocial());
-				}
-				repositorio.save(empresa);
-			}
-			return new ResponseEntity<>(empresa, HttpStatus.ACCEPTED);
-		}
-	}
+    Empresa empresa = repositorio.findById(idEmpresa).orElse(null);
+    if(empresa == null) {
+        return new ResponseEntity<>("Empresa não econtrada...", HttpStatus.NOT_FOUND);
+    }else {
+        if(dados != null) {
+            atualizador.atualizar(empresa, dados);
+            repositorio.save(empresa);
+        }
+        return new ResponseEntity<>(empresa, HttpStatus.ACCEPTED);
+    }
+}
 
 	@DeleteMapping("/empresa/excluir/{idEmpresa}")
 	public ResponseEntity<?> deletarEmpresa(@PathVariable Long idEmpresa){

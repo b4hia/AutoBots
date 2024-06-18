@@ -71,17 +71,17 @@ public class MercadoriaControle {
 	
 	@GetMapping("/mercadoria/{id}")
 	public ResponseEntity<Mercadoria> encontrarMercadoria(@PathVariable Long id){
-		Mercadoria mercadoria = repositorio.findById(id).orElse(null);
-		HttpStatus status = null;
-		if(mercadoria == null) {
-			status = HttpStatus.NOT_FOUND;
-		}else {
-			adicionarLink.adicionarLink(mercadoria);
-			adicionarLink.adicionarLinkUpdate(mercadoria);
-			adicionarLink.adicionarLinkDelete(mercadoria);
-			status = HttpStatus.FOUND;
-		}
-		return new ResponseEntity<Mercadoria>(mercadoria,status);
+    Mercadoria mercadoria = selecionador.selecionar(id);
+    HttpStatus status = null;
+    if(mercadoria == null) {
+        status = HttpStatus.NOT_FOUND;
+    }else {
+        adicionarLink.adicionarLink(mercadoria);
+        adicionarLink.adicionarLinkUpdate(mercadoria);
+        adicionarLink.adicionarLinkDelete(mercadoria);
+        status = HttpStatus.FOUND;
+    }
+    return new ResponseEntity<Mercadoria>(mercadoria,status);
 	}
 	
 	@PostMapping("/mercadoria/cadastro/{idEmpresa}")
@@ -126,33 +126,17 @@ public class MercadoriaControle {
 	
 	@PutMapping("/mercadoria/atualizar/{idMercadoria}")
 	public ResponseEntity<?> atualizarMercadoria(@PathVariable Long idMercadoria, @RequestBody Mercadoria dados){
-		Mercadoria mercadoria = repositorio.findById(idMercadoria).orElse(null);
-		if(mercadoria == null) {
-			return new ResponseEntity<>("Mercadoria não encontrada...",HttpStatus.NOT_FOUND);
-		}else {
-			if(dados != null) {
-				if(dados.getNome() != null) {
-					mercadoria.setNome(dados.getNome());
-				}
-				if(dados.getDescricao() != null) {
-					mercadoria.setDescricao(dados.getDescricao());
-				}
-				if(dados.getQuantidade() == 0) {
-					mercadoria.setQuantidade(dados.getQuantidade());
-				}
-				if(dados.getValidade() != null) {
-					mercadoria.setValidade(dados.getValidade());
-				}
-				if(dados.getFabricao() != null) {
-					mercadoria.setFabricao(dados.getFabricao());
-				}
-				
-				mercadoria.setValor(dados.getValor());
-				repositorio.save(mercadoria);
-			}
-			return new ResponseEntity<>(mercadoria, HttpStatus.ACCEPTED);
-		}
-	}
+    Mercadoria mercadoria = repositorio.findById(idMercadoria).orElse(null);
+    if(mercadoria == null) {
+        return new ResponseEntity<>("Mercadoria não encontrada...", HttpStatus.NOT_FOUND);
+    }else {
+        if(dados != null) {
+            atualizador.atualizar(mercadoria, dados);
+            repositorio.save(mercadoria);
+        }
+        return new ResponseEntity<>(mercadoria, HttpStatus.ACCEPTED);
+    }
+}
 	
 	@DeleteMapping("/mercadoria/excluir/{idMercadoria}")
 	public ResponseEntity<?> deletarMercadoriaEmpresa(@PathVariable Long idMercadoria){

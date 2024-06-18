@@ -66,16 +66,18 @@ public class CredencialControle {
 	}
 	
 	@GetMapping("/credencial/{id}")
-	public ResponseEntity<?> listaCredencialPorId(@PathVariable Long id){
-		CredencialUsuarioSenha credencial = repositorioCredencialUsuarioSenha.findById(id).orElse(null);
+	public ResponseEntity<Credencial> encontrarCredencial(@PathVariable Long id){
+		Credencial credencial = selecionadorCredencial.selecionar(id);
+		HttpStatus status = null;
 		if(credencial == null) {
-			return new ResponseEntity<String>("credencial não encontrada...", HttpStatus.NOT_FOUND);
+			status = HttpStatus.NOT_FOUND;
 		}else {
 			adicionarLinkCredencialUserSenha.adicionarLink(credencial);
 			adicionarLinkCredencialUserSenha.adicionarLinkUpdate(credencial);
 			adicionarLinkCredencialUserSenha.adicionarLinkDelete(credencial);
-			return new ResponseEntity<CredencialUsuarioSenha>(credencial, HttpStatus.FOUND);
+			status = HttpStatus.FOUND;
 		}
+		return new ResponseEntity<Credencial>(credencial,status);
 	}
 	
 	@GetMapping("/encontrar-username")
@@ -122,19 +124,14 @@ public class CredencialControle {
 	}
 	
 	@PutMapping("/credencial/atualizar/{idCredencial}")
-	public ResponseEntity<?> atualizarCredencial(@PathVariable Long idCredencial, @RequestBody CredencialUsuarioSenha dados){
-		CredencialUsuarioSenha credencial = repositorioCredencialUsuarioSenha.findById(idCredencial).orElse(null);
-		if(credencial == null) {
-			return new ResponseEntity<String>("credencial não encontrada...", HttpStatus.NOT_FOUND);
-		}else {
-			if(dados != null) {
-				if(dados.getNomeUsuario() != null) {
-					credencial.setNomeUsuario(dados.getNomeUsuario());
-				}
-				if(dados.getSenha() != null) {
-					credencial.setSenha(dados.getSenha());
-				}
-				repositorioCredencialUsuarioSenha.save(credencial);
+	public ResponseEntity<?> atualizarCredencial(@PathVariable Long idCredencial, @RequestBody Credencial dados) {
+		Credencial credencial = repositorioCredencial.findById(idCredencial).orElse(null);
+		if (credencial == null) {
+			return new ResponseEntity<>("Credencial não encontrada...", HttpStatus.NOT_FOUND);
+		} else {
+			if (dados != null) {
+				atualizadorCredencial.atualizar(credencial, dados);
+				repositorioCredencial.save(credencial);
 			}
 			return new ResponseEntity<>(credencial, HttpStatus.ACCEPTED);
 		}
