@@ -18,10 +18,13 @@ import com.autobots.automanager.entitades.Credencial;
 import com.autobots.automanager.entitades.CredencialCodigoBarra;
 import com.autobots.automanager.entitades.CredencialUsuarioSenha;
 import com.autobots.automanager.entitades.Usuario;
+import com.autobots.automanager.modelos.CredencialSelecionador;
 import com.autobots.automanager.models.AddLinkCredencialCodigoDeBarra;
 import com.autobots.automanager.models.AddLinkCredencialUsuarioSenha;
 import com.autobots.automanager.repositorios.CodigoBarraRepositorio;
 import com.autobots.automanager.repositorios.UsuarioRepositorio;
+
+import main.java.com.autobots.automanager.modelos.CredencialAtualizador;
 
 @RestController
 public class CredencialControle {
@@ -31,6 +34,12 @@ public class CredencialControle {
 	
 	@Autowired
 	private CodigoBarraRepositorio repositorioCredencialCodigoBarra;
+	
+	@Autowired
+	private CredencialSelecionador selecionadorCredencial;
+
+	@Autowired
+	private CredencialAtualizador atualizadorCredencial;
 	
 	@Autowired
 	private UsuarioRepositorio repositorioUsuario;

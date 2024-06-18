@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.autobots.automanager.entitades.Email;
 import com.autobots.automanager.entitades.Usuario;
+import com.autobots.automanager.modelos.EmailAtualizador;
+import com.autobots.automanager.modelos.EmailSelecionador;
 import com.autobots.automanager.models.AdicionadorLinkEmail;
 import com.autobots.automanager.repositorios.EmailRepositorio;
 import com.autobots.automanager.repositorios.UsuarioRepositorio;
@@ -27,6 +29,11 @@ public class EmailControle {
 	
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
+
+	@Autowired
+	private EmailAtualizador atualizador;
+
+	@Autowired EmailSelecionador selecionador;
 	
 	@Autowired
 	private AdicionadorLinkEmail adicionarLink;

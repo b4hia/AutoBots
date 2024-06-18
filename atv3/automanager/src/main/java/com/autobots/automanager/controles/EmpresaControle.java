@@ -16,14 +16,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.autobots.automanager.entitades.Empresa;
+import com.autobots.automanager.modelos.EmpresaSelecionador;
 import com.autobots.automanager.models.AdicionadorLinkEmpresa;
 import com.autobots.automanager.repositorios.EmpresaRepositorio;
+
+import main.java.com.autobots.automanager.modelos.EmpresaAtualizador;
 
 @RestController
 public class EmpresaControle {
 	
 	@Autowired
 	private EmpresaRepositorio repositorio;
+
+	@Autowired
+	private EmpresaAtualizador atualizador;
+
+	@Autowired
+	private EmpresaSelecionador selecionador;
+	
 	@Autowired
 	private AdicionadorLinkEmpresa adicionarLink;
 	

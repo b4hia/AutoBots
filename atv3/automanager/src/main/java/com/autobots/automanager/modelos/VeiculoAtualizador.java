@@ -30,7 +30,7 @@ public class VeiculoAtualizador {
 		}
 	}
 	public void atualizar(List<Veiculo> veiculos, List<Veiculo> atualizacoes) {
-		for (Endereco atualizacao : atualizacoes) {
+		for (Veiculo atualizacao : atualizacoes) {
 			for (Veiculo veiculo : veiculos) {
 				if (atualizacao.getId() != null) {
 					if (atualizacao.getId() == veiculo.getId()) {

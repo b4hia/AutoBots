@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.autobots.automanager.entitades.Empresa;
 import com.autobots.automanager.entitades.Servico;
 import com.autobots.automanager.entitades.Venda;
+import com.autobots.automanager.modelos.ServicoAtualizador;
+import com.autobots.automanager.modelos.ServicoSelecionador;
 import com.autobots.automanager.models.AdicionadorLinkServico;
 import com.autobots.automanager.repositorios.EmpresaRepositorio;
 import com.autobots.automanager.repositorios.ServicoRepositorio;
@@ -28,6 +30,10 @@ public class ServicoControle {
 	
 	@Autowired
 	private ServicoRepositorio repositorio;
+	@Autowired
+	private ServicoSelecionador selecionador;
+	@Autowired
+	private ServicoAtualizador atualizador;
 	@Autowired
 	private EmpresaRepositorio empresaRepositorio;
 	@Autowired 

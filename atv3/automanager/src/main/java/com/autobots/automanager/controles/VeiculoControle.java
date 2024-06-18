@@ -17,15 +17,24 @@ import org.springframework.web.bind.annotation.RestController;
 import com.autobots.automanager.entitades.Usuario;
 import com.autobots.automanager.entitades.Veiculo;
 import com.autobots.automanager.entitades.Venda;
+import com.autobots.automanager.modelos.VeiculoAtualizador;
 import com.autobots.automanager.models.AdicionadorLinkVeiculo;
 import com.autobots.automanager.repositorios.UsuarioRepositorio;
 import com.autobots.automanager.repositorios.VeiculoRepositorio;
 import com.autobots.automanager.repositorios.VendaRepositorio;
 
+import main.java.com.autobots.automanager.modelos.VeiculoSelecionador;
+
 @RestController
 public class VeiculoControle {
 	@Autowired
 	private VeiculoRepositorio repositorio;
+	
+	@Autowired
+	private VeiculoSelecionador selecionador;
+
+	@Autowired
+	private VeiculoAtualizador atualizador;
 	
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;

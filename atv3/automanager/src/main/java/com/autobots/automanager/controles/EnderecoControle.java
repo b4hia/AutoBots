@@ -28,6 +28,8 @@ public class EnderecoControle {
     @Autowired
     private EnderecoSelecionador selecionador;
     @Autowired
+	private EnderecoAtualizador atualizador;
+	@Autowired
     private AdicionadorLinkEndereco adicionadorLink;
 
     @GetMapping("/endereco/{id}")

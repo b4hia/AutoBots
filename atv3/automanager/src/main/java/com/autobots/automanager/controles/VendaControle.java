@@ -22,6 +22,8 @@ import com.autobots.automanager.entitades.Servico;
 import com.autobots.automanager.entitades.Usuario;
 import com.autobots.automanager.entitades.Veiculo;
 import com.autobots.automanager.entitades.Venda;
+import com.autobots.automanager.modelos.VendaAtualizador;
+import com.autobots.automanager.modelos.VendaSelecionador;
 import com.autobots.automanager.models.AdicionadorLinkVenda;
 import com.autobots.automanager.repositorios.EmpresaRepositorio;
 import com.autobots.automanager.repositorios.MercadoriaRepositorio;
@@ -34,25 +36,31 @@ import com.autobots.automanager.repositorios.VendaRepositorio;
 public class VendaControle {
 	
 	@Autowired
-	public VendaRepositorio repositorio;
+	private VendaRepositorio repositorio;
+
+	@Autowired
+	private VendaSelecionador selecionador;
+
+	@Autowired
+	private VendaAtualizador atualizador;
 	
 	@Autowired
-	public EmpresaRepositorio empresaRepositorio;
+	private EmpresaRepositorio empresaRepositorio;
 	
 	@Autowired
-	public UsuarioRepositorio usuarioRepositorio;
+	private UsuarioRepositorio usuarioRepositorio;
 	
 	@Autowired
-	public MercadoriaRepositorio  mercadoriaRepositorio;
+	private MercadoriaRepositorio  mercadoriaRepositorio;
 	
 	@Autowired
-	public ServicoRepositorio servicoRepositorio;
+	private ServicoRepositorio servicoRepositorio;
 	
 	@Autowired
-	public VeiculoRepositorio veiculoRepositorio;
+	private VeiculoRepositorio veiculoRepositorio;
 	
 	@Autowired
-	public AdicionadorLinkVenda adicionarLink;
+	private AdicionadorLinkVenda adicionarLink;
 
 	@GetMapping("/vendas")
 	public ResponseEntity<List<Venda>> encontrarVendas() {

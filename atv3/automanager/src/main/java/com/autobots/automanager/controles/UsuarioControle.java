@@ -19,6 +19,8 @@ import com.autobots.automanager.entitades.Usuario;
 import com.autobots.automanager.entitades.Veiculo;
 import com.autobots.automanager.entitades.Venda;
 import com.autobots.automanager.enumeracoes.PerfilUsuario;
+import com.autobots.automanager.modelos.UsuarioAtualizador;
+import com.autobots.automanager.modelos.UsuarioSelecionador;
 import com.autobots.automanager.models.AdicionadorLinkUsuario;
 import com.autobots.automanager.repositorios.EmpresaRepositorio;
 import com.autobots.automanager.repositorios.UsuarioRepositorio;
@@ -31,6 +33,12 @@ public class UsuarioControle {
 	
 	@Autowired
 	private UsuarioRepositorio repositorio;
+
+	@Autowired
+	private UsuarioAtualizador atualizador;
+
+	@Autowired
+	private UsuarioSelecionador selecionador;
 	
 	@Autowired
 	private AdicionadorLinkUsuario adicionarLink;

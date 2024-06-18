@@ -20,6 +20,8 @@ import com.autobots.automanager.entitades.Empresa;
 import com.autobots.automanager.entitades.Mercadoria;
 import com.autobots.automanager.entitades.Usuario;
 import com.autobots.automanager.entitades.Venda;
+import com.autobots.automanager.modelos.MercadoriaAtualizador;
+import com.autobots.automanager.modelos.MercadoriaSelecionador;
 import com.autobots.automanager.models.AdicionadorLinkMercadoria;
 import com.autobots.automanager.repositorios.EmpresaRepositorio;
 import com.autobots.automanager.repositorios.MercadoriaRepositorio;
@@ -28,6 +30,12 @@ import com.autobots.automanager.repositorios.VendaRepositorio;
 
 @RestController
 public class MercadoriaControle {
+
+	@Autowired
+	private MercadoriaSelecionador selecionador;
+
+	@Autowired
+	private MercadoriaAtualizador atualizador;
 	
 	@Autowired
 	private MercadoriaRepositorio repositorio;

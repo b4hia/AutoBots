@@ -29,6 +29,8 @@ public class TelefoneControle {
     @Autowired
     private TelefoneSelecionador selecionador;
     @Autowired
+	private TelefoneAtualizador atualizador;
+	@Autowired
     private AdicionadorLinkTelefone adicionadorLink;
 
     @GetMapping("/telefone/{id}")
