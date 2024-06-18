@@ -63,7 +63,7 @@ public class AutomanagerApplication implements CommandLineRunner {
 		funcionario.getPerfis().add(PerfilUsuario.FUNCIONARIO);
 
 		Email emailFuncionario = new Email();
-		emailFuncionario.setEndereco("a@a.com");
+		emailFuncionario.setEmail("a@a.com");
 
 		funcionario.getEmails().add(emailFuncionario);
 
@@ -107,7 +107,7 @@ public class AutomanagerApplication implements CommandLineRunner {
 		fornecedor.getPerfis().add(PerfilUsuario.FORNECEDOR);
 
 		Email emailFornecedor = new Email();
-		emailFornecedor.setEndereco("f@f.com");
+		emailFornecedor.setEmail("f@f.com");
 
 		fornecedor.getEmails().add(emailFornecedor);
 
@@ -141,7 +141,7 @@ public class AutomanagerApplication implements CommandLineRunner {
 		
 		Mercadoria rodaLigaLeve = new Mercadoria();
 		rodaLigaLeve.setCadastro(new Date());
-		rodaLigaLeve.setFabricao(new Date());
+		rodaLigaLeve.setFabricacao(new Date());
 		rodaLigaLeve.setNome("Roda de liga leva modelo toyota etios");
 		rodaLigaLeve.setValidade(new Date());
 		rodaLigaLeve.setQuantidade(30);
@@ -158,7 +158,7 @@ public class AutomanagerApplication implements CommandLineRunner {
 		cliente.getPerfis().add(PerfilUsuario.CLIENTE);
 
 		Email emailCliente = new Email();
-		emailCliente.setEndereco("c@c.com");
+		emailCliente.setEmail("c@c.com");
 
 		cliente.getEmails().add(emailCliente);
 
@@ -228,7 +228,7 @@ public class AutomanagerApplication implements CommandLineRunner {
 		
 		Mercadoria rodaLigaLeve2 = new Mercadoria();
 		rodaLigaLeve2.setCadastro(new Date());
-		rodaLigaLeve2.setFabricao(new Date());
+		rodaLigaLeve2.setFabricacao(new Date());
 		rodaLigaLeve2.setNome("Roda de liga leva modelo toyota etios");
 		rodaLigaLeve2.setValidade(new Date());
 		rodaLigaLeve2.setQuantidade(30);

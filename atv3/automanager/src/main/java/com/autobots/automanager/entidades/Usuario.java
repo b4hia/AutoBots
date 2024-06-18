@@ -1,8 +1,8 @@
 package com.autobots.automanager.entidades;
 
-import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
